@@ -21,3 +21,19 @@ def leer_archivo_gramatica(entrada):
             gramatica[no_terminal].append(cuerpo_prod_lista)
 
     return gramatica
+
+def convertir_archivo_gramatica(archivo):
+    gramatica = {}
+    for linea in archivo:
+        separacion = linea.split("->")
+        no_terminal = separacion[0]
+        cuerpo_prod = separacion[1].replace("\n", "")
+        cuerpo_prod_lista = re.findall(rf"[A-Z]{comilla}+|[a-zA-Z]|\S", cuerpo_prod)
+
+        if no_terminal not in gramatica:
+            gramatica[no_terminal] = []
+
+        gramatica[no_terminal].append(cuerpo_prod_lista)
+    return gramatica
+
+
