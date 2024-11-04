@@ -1,11 +1,9 @@
 from modulos import comilla, re
 
 
-def leer_archivo_gramatica(entrada):
+def leer_archivo_gramatica(entrada): #para leer la gramatica pasando como parametro la url del archivo txt (solo en google colab)
     print("Leyendo archivo y procesando la entrada...")
-
     gramatica = {}
-
     with open(entrada, "r") as archivo:
 
         for linea in archivo:
@@ -22,7 +20,7 @@ def leer_archivo_gramatica(entrada):
 
     return gramatica
 
-def convertir_archivo_gramatica(archivo):
+def convertir_archivo_gramatica(archivo): #pasar un archivo StringIO (usado en streamlit)
     gramatica = {}
     for linea in archivo:
         separacion = linea.split("->")
