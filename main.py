@@ -7,6 +7,7 @@ from factorizacion import factorizar_izquierda
 from calcularPrimeros import primero
 from calcularSiguientes import siguiente
 from algoritmoTablaM import generarTablaM
+from verificacion_cadena import verificar_cadena
 
 import streamlit as st # Use: "python -m streamlit run main.py" para correr esta aplicacion
 import pandas as pd
@@ -17,8 +18,8 @@ def procesar(archivo):
     clean_gramatica = factorizar_izquierda(gram_recurFree)
     prims = primero(clean_gramatica)
     sigs = siguiente(clean_gramatica, prims)
-    noterms, terms, tablaM = generarTablaM(clean_gramatica, prims, sigs)
-    return gramatica, clean_gramatica, prims, sigs, tablaM, noterms, terms
+    tablaM = generarTablaM(clean_gramatica, prims, sigs)
+    return gramatica, clean_gramatica, prims, sigs, tablaM
 
 def escribir_gramatica(gramatica):
     cad = ""
@@ -42,7 +43,7 @@ archivo_gramatica = st.file_uploader("Agregue el archivo txt con la gramatica", 
 
 if archivo_gramatica is not None:
     cadena = StringIO(archivo_gramatica.getvalue().decode("utf-8"))
-    gramatica, clean_gramatica, prims, sigs, tablaM, noterms, terms = procesar(cadena)
+    gramatica, clean_gramatica, prims, sigs, tablaM = procesar(cadena)
 
     st.divider()
 
@@ -73,5 +74,4 @@ if archivo_gramatica is not None:
     st.subheader("Tabla M")
 
     
-    tablaMod = [[str(celda) for celda in fila] for fila in tablaM]
-    st.write(pd.DataFrame(tablaMod, columns=terms, index=noterms ))
+    st.write(tablaM)

@@ -1,4 +1,6 @@
 from modulos import re
+from modulos import pd
+
 def generarTablaM(gramatica, primeros, siguientes):
     print("Generando la tabla M...")
 
@@ -16,11 +18,12 @@ def generarTablaM(gramatica, primeros, siguientes):
 
     filas = len(gramatica)
     columnas = len(terminales)
-    tablaM = [["" for x in range(columnas)] for x in range(filas)]
+    tablaM = pd.DataFrame("", columns=terminales, index=no_terminales)
+    
 
     for no_terminal in no_terminales:
 
-        no_terminal_index = no_terminales.index(no_terminal)
+        #no_terminal_index = no_terminales.index(no_terminal)
 
         for opcion_prod in gramatica[no_terminal]:
 
@@ -34,22 +37,29 @@ def generarTablaM(gramatica, primeros, siguientes):
                         prim_alpha_has_epsilon = True
 
                     else:
-
-                        tablaM[no_terminal_index][terminales.index(prim)] = opcion_prod
+                        produccion = no_terminal + "->" + "".join(opcion_prod)
+                        tablaM.loc[no_terminal, prim] = produccion
+                        #tablaM[no_terminal_index][terminales.index(prim)] = opcion_prod
 
                 if prim_alpha_has_epsilon:
 
                     for sig in siguientes[no_terminal]:
 
-                        tablaM[no_terminal_index][terminales.index(sig)] = opcion_prod
+                        produccion = no_terminal + "->" + "".join(opcion_prod)
+                        tablaM.loc[no_terminal, sig] = produccion
+                        #tablaM[no_terminal_index][terminales.index(sig)] = opcion_prod
 
             else:
                 if alpha == "&":
                     for sig in siguientes[no_terminal]:
 
-                        tablaM[no_terminal_index][terminales.index(sig)] = opcion_prod
+                        produccion = no_terminal + "->" + "".join(opcion_prod)
+                        tablaM.loc[no_terminal, sig] = produccion
+                        #tablaM[no_terminal_index][terminales.index(sig)] = opcion_prod
 
                 else:
-                    tablaM[no_terminal_index][terminales.index(alpha)] = opcion_prod
+                    produccion = no_terminal + "->" + "".join(opcion_prod)
+                    tablaM.loc[no_terminal, alpha] = produccion
+                    #tablaM[no_terminal_index][terminales.index(alpha)] = opcion_prod
 
-    return no_terminales, terminales, tablaM
+    return tablaM
