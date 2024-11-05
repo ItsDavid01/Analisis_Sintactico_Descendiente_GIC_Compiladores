@@ -18,6 +18,8 @@ def verificarCadena(tablaM, cad):
     while X != "$":
         X = pila[-1]
         ae = cadena[0]
+        if ae not in list(tablaM.columns):
+            return f"El Simbolo terminal {ae} no esta en la gramatica"
         print(f"X: {X}")
         print(f"ae: {ae}")
 
