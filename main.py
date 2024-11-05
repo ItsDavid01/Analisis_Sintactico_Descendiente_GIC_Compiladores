@@ -7,9 +7,9 @@ from factorizacion import factorizar_izquierda
 from calcularPrimeros import primero
 from calcularSiguientes import siguiente
 from algoritmoTablaM import generarTablaM
-from verificacion_cadena import verificar_cadena
+from AlgoritmoVerificacionCadenas import verificarCadena
 
-import streamlit as st # Use: "python -m streamlit run main.py" para correr esta aplicacion
+import streamlit as st # para correr esta aplicacion desde su ordenador use: python -m streamlit run main.py
 import pandas as pd
 
 def procesar(archivo):
@@ -73,5 +73,17 @@ if archivo_gramatica is not None:
 
     st.subheader("Tabla M")
 
-    
     st.write(tablaM)
+
+    st.divider()
+
+    st.subheader("Verificacion de Palabras")
+    st.write("Escriba aqui la cadena que desea verificar...")
+    cadena = st.text_input("Escriba aqui la cadena que desea verificar", value=None, placeholder="¡Escriba aqui!", help="Ejemplo: i*i+i")
+    if cadena is not None:
+        st.write(f"cadena ingresada: {cadena}")
+        resultadoVerificacion = verificarCadena(tablaM, cadena)
+        st.write(resultadoVerificacion)
+    
+
+

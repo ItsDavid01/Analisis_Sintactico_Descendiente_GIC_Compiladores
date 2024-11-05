@@ -3,7 +3,7 @@ from modulos import pd
 from modulos import re
 from modulos import comilla
 
-def verificar_cadena(tablaM, cad):
+def verificarCadena(tablaM, cad):
     pila = ["$", tablaM.index[0]]  # inicialmente tendra un signo $ y el simbolo no terminal de inicio
     cadena = list(cad + "$")
 
@@ -41,7 +41,10 @@ def verificar_cadena(tablaM, cad):
                 print(f"pila modificada: {pila}")
 
             else:
-                ...  # error
+                tabla["pila"].append("".join(pila))
+                tabla["cadena"].append("".join(cadena))
+                tabla["accion"].append("RECHAZAR")
+                break
         else:  # X es un terminal
             if X == ae:  # son iguales
                 tabla["pila"].append("".join(pila))
@@ -53,5 +56,13 @@ def verificar_cadena(tablaM, cad):
                 print(f"pila modificada: {pila}")
                 print(f"cadena modificada: {cadena}")
             else:
-                ...  # error
+                tabla["pila"].append("".join(pila))
+                tabla["cadena"].append("".join(cadena))
+                tabla["accion"].append("RECHAZAR")
+                break
+
+            if (X=="$") and (ae == "$"):
+                tabla["pila"].append("".join(pila))
+                tabla["cadena"].append("".join(cadena))
+                tabla["accion"].append("ACEPTAR")
     return pd.DataFrame(tabla)
