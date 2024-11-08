@@ -7,6 +7,9 @@ def siguiente(gramatica, primeros):
     for no_terminal in gramatica:
 
         siguientes[no_terminal] = []
+    eliminados = {}
+    for no_terminal in gramatica:
+        eliminados[no_terminal] = []
 
     i = 0
     for no_terminal in list(gramatica.keys()):
@@ -66,6 +69,7 @@ def siguiente(gramatica, primeros):
             if re.match(r"[A-Z]", sig):
                 if sig == no_terminal:
                     siguientes[no_terminal].remove(sig)
+                    eliminados[no_terminal].append(sig) #eliminado SIG
                     i = 0
                 else:
                     if no_terminal in siguientes[sig]:
@@ -74,10 +78,12 @@ def siguiente(gramatica, primeros):
                                 e
                                 for e in siguientes[sig]
                                 if e not in siguientes[no_terminal] and e != no_terminal
+                                and e not in eliminados[no_terminal]
                             ]
                         )
                         siguientes[sig] = siguientes[no_terminal]
                         siguientes[no_terminal].remove(sig)
+                        eliminados[no_terminal].append(sig) #eliminado SIG
                         i = 0
                     else:
                         siguientes[no_terminal].extend(
@@ -85,9 +91,11 @@ def siguiente(gramatica, primeros):
                                 e
                                 for e in siguientes[sig]
                                 if e not in siguientes[no_terminal]
+                                and e not in eliminados[no_terminal]
                             ]
                         )
                         siguientes[no_terminal].remove(sig)
+                        eliminados[no_terminal].append(sig) #eliminado SIG
                         i = 0
 
             else:
