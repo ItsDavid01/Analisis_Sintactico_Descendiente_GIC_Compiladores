@@ -52,7 +52,8 @@ def siguiente(gramatica, primeros):
 
                         if "&" not in primeros[B]:
                             beta_can_be_epsilon = False
-
+                elif B == "&":
+                    continue
                 else:
                     beta_can_be_epsilon = False
         i += 1
