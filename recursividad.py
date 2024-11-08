@@ -2,6 +2,7 @@ from modulos import copy
 
 
 def eliminar_recursividad_izquierda(gramatica):
+  
     print("Eliminando recursividad izquierda...")
 
     new_gramatica = {}
@@ -22,10 +23,13 @@ def eliminar_recursividad_izquierda(gramatica):
 
         if lista_alpha:
 
-            for opcion_beta in lista_beta:
-                temp_beta = copy.copy(opcion_beta)
-                temp_beta.append(f"{no_terminal}'")
-                new_gramatica[no_terminal].append(copy.copy(temp_beta))
+            if lista_beta:
+                for opcion_beta in lista_beta:
+                    temp_beta = copy.copy(opcion_beta)
+                    temp_beta.append(f"{no_terminal}'")
+                    new_gramatica[no_terminal].append(copy.copy(temp_beta))
+            else:
+                new_gramatica[no_terminal].append([f"{no_terminal}'"])
 
             new_gramatica[f"{no_terminal}'"] = []
 
@@ -40,3 +44,4 @@ def eliminar_recursividad_izquierda(gramatica):
             new_gramatica[no_terminal] = lista_beta
 
     return new_gramatica
+    
