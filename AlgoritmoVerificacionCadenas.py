@@ -19,7 +19,10 @@ def verificarCadena(tablaM, cad):
         X = pila[-1]
         ae = cadena[0]
         if ae not in list(tablaM.columns):
-            return f"El Simbolo terminal {ae} no esta en la gramatica"
+            tabla["pila"].append("".join(pila))
+            tabla["cadena"].append("".join(cadena))
+            tabla["accion"].append("RECHAZAR")
+            return pd.DataFrame(tabla)
         print(f"X: {X}")
         print(f"ae: {ae}")
 
@@ -64,7 +67,7 @@ def verificarCadena(tablaM, cad):
                 break
 
             if (X=="$") and (ae == "$"):
-                tabla["pila"].append("".join(pila))
-                tabla["cadena"].append("".join(cadena))
-                tabla["accion"].append("ACEPTAR")
+                #tabla["pila"].append("".join(pila))
+                #tabla["cadena"].append("".join(cadena))
+                tabla["accion"][-1] = "ACEPTAR"
     return pd.DataFrame(tabla)
