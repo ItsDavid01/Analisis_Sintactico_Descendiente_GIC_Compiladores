@@ -57,7 +57,7 @@ def escribir_prim_sigs(dicc, tipo):
         st.write("Hubo un error al escribir la tabla")
     else:
         cad = ""
-        sep = ","
+        sep = " "
         for no_terminal in dicc:
             cad += f"{tipo}({no_terminal}) = [{ sep.join(dicc[no_terminal])}]\n"
         st.text(cad)
