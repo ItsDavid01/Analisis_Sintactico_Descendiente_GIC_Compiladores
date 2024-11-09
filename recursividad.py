@@ -3,7 +3,7 @@ from modulos import copy
 
 def eliminar_recursividad_izquierda(gramatica):
   
-    print("Eliminando recursividad izquierda...")
+    #print("Eliminando recursividad izquierda...")
 
     new_gramatica = {}
     for no_terminal in list(gramatica.keys()):

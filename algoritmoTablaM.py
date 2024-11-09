@@ -2,7 +2,7 @@ from modulos import re
 from modulos import pd
 
 def generarTablaM(gramatica, primeros, siguientes):
-    print("Generando la tabla M...")
+    #print("Generando la tabla M...")
 
     no_terminales = list(gramatica.keys())
     terminales = []

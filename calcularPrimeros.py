@@ -2,7 +2,7 @@ from modulos import re, copy
 
 
 def primero(gramatica):
-    print("Calculando primeros...")
+    #print("Calculando primeros...")
     primeros = {}
     tabla = {}
 

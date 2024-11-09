@@ -15,7 +15,7 @@ import pandas as pd
 def procesar(archivo):
     gramatica, hasError = convertir_archivo_gramatica(archivo)
     if hasError:
-        print("6")
+        #print("6")
         return gramatica, hasError, -1, -1, -1, -1
     else:
         try:
@@ -28,18 +28,18 @@ def procesar(archivo):
                     try:
                         tablaM = generarTablaM(clean_gramatica, prims, sigs)
                     except:
-                        print("5")
+                        #print("5")
                         return gramatica, hasError, clean_gramatica, prims, sigs, -1
                 except:
-                    print("4")
+                    #print("4")
                     return gramatica, hasError, clean_gramatica, prims, -1, -1
             except:
-                print("3")
+                #print("3")
                 return gramatica, hasError, clean_gramatica, -1, -1, -1
         except:
-            print("2")
+            #print("2")
             return gramatica, hasError, -1, -1, -1, -1
-        print("1")
+        #print("1")
         return gramatica, hasError, clean_gramatica, prims, sigs, tablaM
 
 def escribir_gramatica(gramatica):

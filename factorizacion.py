@@ -53,7 +53,7 @@ def factorizar(no_terminal, cuerpo_prod, cant):
 
 
 def factorizar_izquierda(gramatica):
-    print("Factorizando la gramatica...")
+    #print("Factorizando la gramatica...")
     queue = []
     new_gramatica = {}
     for no_terminal in list(gramatica.keys()):

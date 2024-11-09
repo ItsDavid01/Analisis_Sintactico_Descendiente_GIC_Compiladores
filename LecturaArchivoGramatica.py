@@ -6,7 +6,7 @@ def convertir_archivo_gramatica(archivo): #pasar un archivo StringIO (usado en s
         
         for linea in archivo:
             linea_limpia = re.sub(r"[ \t\r\f\v\n]+", "", linea)
-            print(f"linea_limpia {linea_limpia}")
+            #print(f"linea_limpia {linea_limpia}")
             if "->" in linea_limpia:
                 separacion = linea_limpia.split("->")
                 no_terminal = separacion[0]

@@ -2,7 +2,7 @@ from modulos import re
 
 
 def siguiente(gramatica, primeros):
-    print("Calculando siguientes...")
+    #print("Calculando siguientes...")
     siguientes = {}
     for no_terminal in gramatica:
 
